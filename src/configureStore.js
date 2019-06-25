@@ -1,17 +1,22 @@
-import { createBrowserHistory } from 'history'
-import { applyMiddleware, compose, createStore } from 'redux'
+import createBrowserHistory from 'history/createBrowserHistory';
+import { applyMiddleware, createStore } from 'redux'
 import { routerMiddleware } from 'connected-react-router'
 import rootReducer from './reducers'
-export const history = createBrowserHistory()
+import { composeWithDevTools } from 'redux-devtools-extension';
+
+export const history = createBrowserHistory();
+
+history.listen(() => {
+  console.log('OK');
+});
 
 export default function configureStore(preloadedState) {
   const store = createStore(
     rootReducer(history), // root reducer with router state
     preloadedState,
-    compose(
+    composeWithDevTools(
       applyMiddleware(
-        routerMiddleware(history), // for dispatching history actions
-        // ... other middlewares ...
+        routerMiddleware(history),
       ),
     ),
   )

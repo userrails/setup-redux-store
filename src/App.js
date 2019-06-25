@@ -2,12 +2,9 @@ import React from 'react';
 import './App.css';
 import Routes from './routes';
 import NavbarHeader from './app/NavbarHeader';
-import {ConnectedRouter} from 'connected-react-router';
 
-
-function App(props) {
+function App() {
   return (
-    <ConnectedRouter history={props.history}>
     <div className="App">
       <div>
         <NavbarHeader />
@@ -19,7 +16,6 @@ function App(props) {
       </div>
       </header>
     </div>
-    </ConnectedRouter>
   );
 }
 
